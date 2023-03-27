@@ -40,7 +40,7 @@ const Treatment = () => {
               here', making it look like readable English. Many desktop
               publishing packages and web page
             </p>
-            <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary">
+              <button className="ml-[25px]  btn btn-primary bg-gradient-to-r from-primary to-secondary">
               Get Started
             </button>
           </div>
