@@ -1,7 +1,7 @@
 import { format } from "date-fns/esm";
 import React from "react";
 
-const BookingModal = ({treatment,selectedDate}) => {
+const BookingModal = ({treatment, setTreatment,selectedDate}) => {
   const {name,slots}=treatment;
   const date=format(selectedDate,"PP")
 
@@ -12,10 +12,16 @@ const BookingModal = ({treatment,selectedDate}) => {
     const name=form.name.value;
     const email=form.email.value;
     const phone=form.phone.value;
-    console.log(date,slot,
-      name,
+    const booking={
+      appoinmentDate:date,
+      treatment:name,
+      patient:name,
+      slot,
       email,
-      phone);
+      phone
+    }
+    setTreatment(null)
+    console.log(booking);
   }
 
   return (
@@ -36,15 +42,15 @@ const BookingModal = ({treatment,selectedDate}) => {
            
             <input disabled type="text" value={date} className="input w-full input-bordered" />
               <select name="slot" className="select select-bordered w-full">
-                <option disabled selected>You can select from first 3 slots</option>
+              
                   { 
-                    slots.slice(0,3).map(slot=> <option value={slot}>{slot}</option>)
+                    slots.slice(0,3).map((slot,index)=> <option key={index} value={slot}>{slot}</option>)
                   }
                 
               </select>
 
-            <input name="name" type="text" placeholder="Your Name" className="input w-full input-bordered" />
-            <input name="email" type="email" placeholder="Email" className="input w-full input-bordered" />
+            <input name="name" type="text" placeholder="Your Name" className="input w-full input-bordered" required/>
+            <input name="email" type="email" placeholder="Email" className="input w-full input-bordered" required/>
             <input name="phone" type="tel" placeholder="Phone Number" className="input w-full input-bordered" />
            
             <input className="btn btn-accent w-full" type="submit" value="Submit" />
