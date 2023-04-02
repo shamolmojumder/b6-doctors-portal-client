@@ -2,6 +2,7 @@ import React from "react";
 import chair from "../../../assets/images/chair.png"
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 import bg from '../../../assets/images/bg.png'
+import { NavLink } from "react-router-dom";
 const Banner = () => {
   return (
     <div style={{background:`url(${bg})`}} className="hero">
@@ -18,7 +19,8 @@ const Banner = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-         <PrimaryButton>Get started</PrimaryButton>
+          <NavLink to="appoinment"> <PrimaryButton>Get started</PrimaryButton> </NavLink>
+         
         </div>
       </div>
     </div>
