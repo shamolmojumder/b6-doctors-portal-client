@@ -5,7 +5,7 @@ import BookingModal from "../BookingModal/BookingModal";
 
 const AvailableAppoinments = ({ selectedDate }) => {
   const [appoinmentOptions, setAppoinmentOptions] = useState([]);
-  console.log(appoinmentOptions);
+  //console.log(appoinmentOptions);
   const [treatment, setTreatment] = useState(null)
 
 
