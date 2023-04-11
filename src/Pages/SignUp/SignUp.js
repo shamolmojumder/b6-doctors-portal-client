@@ -41,7 +41,7 @@ const SignUp = () => {
               <span className="label-text">Password</span>
             </label>
             <input
-              type="password" {...register("password",{required:"Password is requried",minLength:{value:6 ,message:"Minimum 6 digit"}})}
+              type="password" {...register("password",{required:"Password is requried",minLength:{value:8 ,message:"Minimum 8 digit"},pattern:{value:/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!$@ %^&*-])/,message:"Password need one Uppercase,lower,number and special chreacter"}})}
               className="input input-bordered w-full max-w-xs"
               placeholder="Password"
             />
