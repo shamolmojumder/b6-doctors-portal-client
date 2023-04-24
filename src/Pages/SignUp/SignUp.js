@@ -51,7 +51,7 @@ const SignUp = () => {
             <input
               type="password" {...register("password",{required:"Password is requried",minLength:{value:8 ,message:"Minimum 8 digit"},pattern:{value:/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!$@ %^&*-])/,message:"Password need one Uppercase,lower,number and special chreacter"}})}
               className="input input-bordered w-full max-w-xs"
-              placeholder="Password"
+              placeholder="Password" defaultValue={"Sm@1234567"}
             />
             {
                 errors.password && <p className="text-red-500"> {errors.password.message} </p>
