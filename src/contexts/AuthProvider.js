@@ -1,19 +1,28 @@
 import React, { createContext, useEffect, useState } from 'react';
 // import getAuth from '/firebase/auth';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 export const AuthConext=createContext();
 
 const auth=getAuth(app);
 
 const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null)
     const createUser=(email,password)=>{
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const signIn=(email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
     }
-    const [user, setUser] = useState(null)
+    const updateUser=(userInfo)=>{
+        // this user from user state
+        return updateProfile(user,userInfo)
+    }
+
+    const logOut=()=>{
+        return signOut(auth)
+    }
+    
     useEffect(() => {
      const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             console.log("user ovserving");
@@ -26,6 +35,8 @@ const AuthProvider = ({children}) => {
     const authInfo={
         createUser,
         signIn,
+        logOut,
+        updateUser,
         user
     }
 
