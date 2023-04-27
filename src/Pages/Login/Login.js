@@ -3,10 +3,14 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthConext } from "../../contexts/AuthProvider";
 
+// google signin
+import { GoogleAuthProvider } from "firebase/auth";
+
+
 const Login = () => {
   const { register,formState: { errors }, handleSubmit } = useForm();
   const [loginError,setLoginError]=useState("")
-  const {signIn}=useContext(AuthConext);
+  const {signIn,googleSignIn,setLoginUser}=useContext(AuthConext);
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -27,6 +31,34 @@ const Login = () => {
     })
   }
 
+// google signin
+const provider = new GoogleAuthProvider();  
+  const handleGoogle=()=>{
+    googleSignIn(provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+  //    const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+   //   console.log(user,token);
+      // ...
+  //    console.log(user.displayName);
+      setLoginUser(user);
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+      console.log(errorCode,errorMessage,email,credential);
+    });
+  }
+  
   //73-3 Explore React hook form validation, error handling 8:00
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -66,7 +98,7 @@ const Login = () => {
         </form>
         <p>New to Doctors Portal <Link className="text-secondary" to="/signup">Create new account</Link> </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">Continue with google</button>
+        <button onClick={handleGoogle}  className="btn btn-outline w-full">Continue with google</button>
       </div>
     </div>
   );

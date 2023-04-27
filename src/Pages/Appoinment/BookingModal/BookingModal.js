@@ -1,10 +1,13 @@
 import { format } from "date-fns/esm";
 import React from "react";
+import { useContext } from "react";
+import { AuthConext } from "../../../contexts/AuthProvider";
 
 const BookingModal = ({treatment, setTreatment,selectedDate}) => {
   const {name,slots}=treatment;
   const date=format(selectedDate,"PP")
-
+  const{loginUser}= useContext(AuthConext);
+  console.log(loginUser);
   const handleBooking=event=>{
     event.preventDefault();
     const form=event.target;
@@ -49,8 +52,8 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
                 
               </select>
 
-            <input name="name" type="text" placeholder="Your Name" className="input w-full input-bordered" required/>
-            <input name="email" type="email" placeholder="Email" className="input w-full input-bordered" required/>
+            <input name="name" defaultValue={loginUser.displayName} type="text" placeholder="Your Name" className="input w-full input-bordered" required/>
+            <input name="email" defaultValue={loginUser.email} type="email" placeholder="Email" className="input w-full input-bordered" required/>
             <input name="phone" type="tel" placeholder="Phone Number" className="input w-full input-bordered" />
            
             <input className="btn btn-accent w-full" type="submit" value="Submit" />

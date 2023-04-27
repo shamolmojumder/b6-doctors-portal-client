@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 // import getAuth from '/firebase/auth';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 export const AuthConext=createContext();
 
@@ -9,7 +9,8 @@ const auth=getAuth(app);
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [loginUser, setLoginUser] = useState({});
+   // console.log(loginUser);
     const createUser=(email,password)=>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -19,6 +20,14 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth,email,password)
     }
+
+    // const provider = new GoogleAuthProvider();
+  
+    const googleSignIn=(provider)=>{
+        setLoading(true);
+        return signInWithPopup(auth, provider)
+    }
+
     const updateUser=(userInfo)=>{
         // this user from user state
         return updateProfile(user,userInfo)
@@ -33,7 +42,7 @@ const AuthProvider = ({children}) => {
      const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             console.log("user ovserving");
             setUser(currentUser);
-            setLoading(false    )
+            setLoading(false)
         })
         return ()=>unsubscribe();
     }, [])
@@ -42,10 +51,14 @@ const AuthProvider = ({children}) => {
     const authInfo={
         createUser,
         signIn,
+        googleSignIn,
         logOut,
         updateUser,
         user,
-        loading
+        loading,
+        auth,
+        loginUser,
+        setLoginUser,
     }
 
     return (
