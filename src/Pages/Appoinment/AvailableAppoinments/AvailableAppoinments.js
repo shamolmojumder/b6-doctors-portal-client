@@ -10,7 +10,7 @@ const AvailableAppoinments = ({ selectedDate }) => {
 
 
   useEffect(() => {
-    fetch("appoinmentOption.json")
+    fetch("appoinmentOptions.json")
     .then(res=>res.json())
     .then(data=>setAppoinmentOptions(data))
   }, []);
