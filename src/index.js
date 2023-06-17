@@ -6,9 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import "react-day-picker/dist/style.css";
 import AuthProvider from "./contexts/AuthProvider";
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";

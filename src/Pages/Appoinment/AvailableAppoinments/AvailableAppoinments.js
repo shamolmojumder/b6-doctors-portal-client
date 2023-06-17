@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import AppoinmentOption from "./AppoinmentOption";
 import BookingModal from "../BookingModal/BookingModal";
 import { useQuery } from "@tanstack/react-query";
