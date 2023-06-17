@@ -3,6 +3,4 @@
 
 # Home
 
-<img src="3eb46242aad791aefa762d89a01f631aa5c09f1c73c3bae55df33bcaaa769c33caeea5adbc48" alt="Shamol Mojumder Dipu" />
-
-3eb46242aad791aefa762d89a01f631aa5c09f1c73c3bae55df33bcaaa769c33caeea5adbc483eb46242aad791aefa762d89a01f631aa5c09f1c73c3bae55df33bcaaa769c33caeea5adbc48
+<img src="https://i.ibb.co/mRpcKFF/Screenshot-2023-06-17-at-21-51-59-Doctor-Portal.png" alt="Shamol Mojumder Dipu" />
