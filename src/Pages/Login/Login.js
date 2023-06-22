@@ -46,6 +46,7 @@ const provider = new GoogleAuthProvider();
       // ...
   //    console.log(user.displayName);
       setLoginUser(user);
+      navigate(from)
     }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -69,7 +70,7 @@ const provider = new GoogleAuthProvider();
             <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input  type="text" defaultValue={"shamolmojumderdipu@gmail.com"} className="input input-bordered w-full max-w-xs"  {...register("email",{ required: "email is required"})}  />
+            <input  type="text" defaultValue={"shamolmojumder15@gmail.com"} className="input input-bordered w-full max-w-xs"  {...register("email",{ required: "email is required"})}  />
             {errors.email && 
                    <p className="text-red-500"> {errors.email?.message}</p>
              }

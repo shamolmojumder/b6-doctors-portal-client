@@ -6,8 +6,8 @@ import { AuthConext } from "../../../contexts/AuthProvider";
 const BookingModal = ({treatment, setTreatment,selectedDate}) => {
   const {name,slots}=treatment;
   const date=format(selectedDate,"PP")
-  const{loginUser}= useContext(AuthConext);
-  console.log(loginUser);
+  const{user}= useContext(AuthConext);
+  // console.log(loginUser);
   const handleBooking=event=>{
     event.preventDefault();
     const form=event.target;
@@ -52,9 +52,9 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
                 
               </select>
 
-            <input name="name" defaultValue={loginUser.displayName} type="text" placeholder="Your Name" className="input w-full input-bordered" required/>
-            <input name="email" defaultValue={loginUser.email} type="email" placeholder="Email" className="input w-full input-bordered" required/>
-            <input name="phone" type="tel" placeholder="Phone Number" className="input w-full input-bordered" />
+            <input name="name" disabled defaultValue={user?.displayName} type="text" placeholder="Your Name" className="input w-full input-bordered" required/>
+            <input name="email" disabled defaultValue={user?.email} type="email" placeholder="Email" className="input w-full input-bordered" required/>
+            <input name="phone" type="tel" readOnly defaultValue={"01580926671"} placeholder="Phone Number" className="input w-full input-bordered" />
            
             <input className="btn btn-accent w-full" type="submit" value="Submit" />
           </form>
