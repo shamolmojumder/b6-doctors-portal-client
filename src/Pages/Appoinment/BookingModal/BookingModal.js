@@ -2,9 +2,10 @@ import { format } from "date-fns/esm";
 import React from "react";
 import { useContext } from "react";
 import { AuthConext } from "../../../contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const BookingModal = ({treatment, setTreatment,selectedDate}) => {
-  const {name,slots}=treatment;
+  const {name ,slots}=treatment;
   const date=format(selectedDate,"PP")
   const{user}= useContext(AuthConext);
   // console.log(loginUser);
@@ -17,14 +18,31 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
     const phone=form.phone.value;
     const booking={
       appoinmentDate:date,
-      treatment:name,
+      treatment:treatment.name,
       patient:name,
       slot,
       email,
       phone
     }
-    setTreatment(null)
-    console.log(booking);
+
+    fetch('http://localhost:5000/bookings',{
+      method:"POST",
+      headers:{
+        'Content-type': 'application/json',
+      },
+      body:JSON.stringify(booking)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      if (data.acknowledged) {
+        setTreatment(null)
+        console.log(booking);
+        toast.success("Booking confirm")
+      }
+    
+    })
+    
   }
 
   return (
