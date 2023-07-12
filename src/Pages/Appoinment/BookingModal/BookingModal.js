@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthConext } from "../../../contexts/AuthProvider";
 import { toast } from "react-hot-toast";
 
-const BookingModal = ({treatment, setTreatment,selectedDate}) => {
+const BookingModal = ({treatment, setTreatment,selectedDate,refetch}) => {
   const {name: treatmentName ,slots}=treatment;
   const date=format(selectedDate,"PP")
   const{user}= useContext(AuthConext);
@@ -40,6 +40,7 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
         setTreatment(null);
         console.log(booking);
         toast.success("Booking confirm")
+        refetch()
         // toast(
         //   "This toast is super big. I don't think anyone could eat it in one bite.\n\nIt's larger than you expected. You eat it but it does not seem to get smaller.",
         //   {
