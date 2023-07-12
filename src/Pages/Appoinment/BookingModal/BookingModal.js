@@ -5,7 +5,7 @@ import { AuthConext } from "../../../contexts/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const BookingModal = ({treatment, setTreatment,selectedDate}) => {
-  const {name ,slots}=treatment;
+  const {name: treatmentName ,slots}=treatment;
   const date=format(selectedDate,"PP")
   const{user}= useContext(AuthConext);
   // console.log(loginUser);
@@ -18,13 +18,14 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
     const phone=form.phone.value;
     const booking={
       appoinmentDate:date,
-      treatment:treatment.name,
+      treatment:treatmentName,
       patient:name,
       slot,
       email,
       phone
     }
 
+    // const url="https://easy-blue-haddock-ring.cyclic.app/bookings"
     fetch('http://localhost:5000/bookings',{
       method:"POST",
       headers:{
@@ -36,9 +37,15 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
     .then(data=>{
       console.log(data);
       if (data.acknowledged) {
-        setTreatment(null)
+        setTreatment(null);
         console.log(booking);
         toast.success("Booking confirm")
+        // toast(
+        //   "This toast is super big. I don't think anyone could eat it in one bite.\n\nIt's larger than you expected. You eat it but it does not seem to get smaller.",
+        //   {
+        //     duration: 6000,
+        //   }
+        // );
       }
     
     })
@@ -57,7 +64,7 @@ const BookingModal = ({treatment, setTreatment,selectedDate}) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">
-            {name}
+            {treatmentName}
           </h3>
           <form onSubmit={handleBooking} className="grid grid-cols-1 gap-3 mt-10">
            

@@ -5,6 +5,7 @@ import { AuthConext } from "../../contexts/AuthProvider";
 
 // google signin
 import { GoogleAuthProvider } from "firebase/auth";
+import { toast } from "react-hot-toast";
 
 
 const Login = () => {
@@ -24,10 +25,12 @@ const Login = () => {
       const user=result.user;
       console.log(user);
       navigate(from, { replace: true });
+      toast.success("Login successfully")
     })
     .catch(error=>{
       console.error(error.message);
       setLoginError(error.message)
+      toast.error("Information incorrect")
     })
   }
 
