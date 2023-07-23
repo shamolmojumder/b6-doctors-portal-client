@@ -15,7 +15,7 @@ const MyAppointment = () => {
     });
   return (
     <div>
-      <h3 className="text-3xl lg:ml-36 mb-5">My Appointment</h3>
+      <h3 className="text-3xl lg:ml-36 mb-5">My Appointment is {bookings.length} </h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                 {/* head */}
@@ -23,19 +23,20 @@ const MyAppointment = () => {
                     <tr>
                     <th></th>
                     <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                    <th>Favorite Color</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     {bookings.map((booking,i)=>{
-                        return    <tr className="hover">
-                        <th>{i}</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Purple</td>
+                        return    <tr key={booking._id} className="hover">
+                        <th>{i+1}</th>
+                        <td>{booking.patient}  </td>
+                        <td>{booking.treatment}  </td>
+                        <td> {booking.appoinmentDate} </td>
+                        <td>{booking.slot}  </td>
                         </tr>
                     }
                     )}
